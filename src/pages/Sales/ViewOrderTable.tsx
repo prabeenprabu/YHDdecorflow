@@ -136,8 +136,10 @@ const ViewOrderComponent = () => {
     };
 
     const handlePrint = () => {
-        const printContent = document.querySelector(".print-content");
-        const newWindow = window.open("", "_blank");
+        // const printContent = document.querySelector(".print-content");
+        const printContent = document.querySelector(".print");
+        const path = `http://localhost:5173/src\\pages\\Sales\\Invoice.html`;
+        const newWindow: any = window.open("", "_blank");
         const htmlContent = `
       <html>
         <head>
@@ -209,7 +211,7 @@ const ViewOrderComponent = () => {
       </html>
     `;
         newWindow.document.write(htmlContent);
-        newWindow.document.close();
+        // newWindow.document.close();
         newWindow.print();
     };
 

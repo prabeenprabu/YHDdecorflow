@@ -1,0 +1,115 @@
+<html>
+    <head>
+        <title>Invoicing Preview</title>
+        <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
+        <link
+            rel="shortcut icon"
+            href="../../images/logo/Logo.png"
+            type="image/x-icon"
+        />
+        <link rel="stylesheet" href="../../css/style.css" />
+        <style>
+            body,
+            h1,
+            p,
+            table {
+                margin: 0;
+                padding: 0;
+            }
+
+            /* Global styles */
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                color: #333;
+            }
+
+            /* Header styles */
+            .invoice-header {
+                background-color: #f2f2f2;
+                padding: 10px;
+                border-bottom: 1px solid #ccc;
+            }
+
+            .invoice-header h1 {
+                margin: 0;
+            }
+
+            .invoice-header p {
+                margin: 5px 0;
+                color: #666;
+            }
+
+            /* Customer details styles */
+            .customer-details {
+                margin-top: 10px;
+            }
+
+            /* Table styles */
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+                border-radius: 5px;
+                margin: 0 20px;
+            }
+
+            th,
+            td {
+                border: 1px solid #ccc;
+                padding: 8px;
+                text-align: left;
+            }
+
+            th {
+                background-color: #f2f2f2;
+                font-weight: bold;
+            }
+
+            /* Image styles */
+            img {
+                max-width: 150px;
+                height: auto;
+            }
+        </style>
+    </head>
+    <body class="px-2 print">
+        <section>
+            <div>
+                <div class="flex items-center justify-between">
+                    <div class="logo flex items-center w-4/6">
+                        <img
+                            class="w-1/12"
+                            src="../../images/logo/Logo.png"
+                            alt="Logo"
+                        />
+                        <h1 class="center text-3xl font-bold">
+                            Yash Home Decors
+                        </h1>
+                    </div>
+                    <div class="cmyDetails w-2/6 text-right">
+                        <h1 class="mt-3 text-sm">
+                            No: 174, Pycrofts Road,(Nearby EA),<br />
+                            Royapettah, Chennai, Tamil Nadu 600014
+                        </h1>
+                        <h1 class="mt-3 text-sm">Phone: +91-95000 05914</h1>
+                        <h1 class="mt-3 text-sm">yashdecoratives@gmail.com</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="cus flex">
+            <div class="cusDetails">
+                <h1 class="text-red-500 font-bold">Customer Details</h1>
+                <h2 class="text-slate-900">Customer Name</h2>
+                <h2 class="text-slate-900">Customer ID</h2>
+                <h2 class="text-slate-900">Address</h2>
+                <h2 class="text-slate-900">Client Type</h2>
+                <h2 class="text-slate-900">Email</h2>
+                <h2 class="text-slate-900">Phone</h2>
+            </div>
+        </section>
+
+        <script src="https://cdn.tailwindcss.com"></script>
+    </body>
+</html>
