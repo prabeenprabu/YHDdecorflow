@@ -17,6 +17,7 @@
     "apexcharts": "^3.41.0",
     "axios": "^1.6.7",
     "flatpickr": "^4.6.13",
+    "flowbite-react": "^0.7.2",
     "headlessui": "^0.0.0",
     "heroicons": "^2.1.1",
     "jsvectormap": "^1.5.3",
