@@ -14,6 +14,7 @@ const PrintInvoice = () => {
   const [editedInvoice, setEditedInvoice] = useState(null);
   const [toastMessage, setToastMessage] = useState("");
   const [showToast, setShowToast] = useState(false);
+  const [discountPercentage, setDiscountPercentage] = useState(0);
 
   useEffect(() => {
     fetchCustomers();
@@ -157,6 +158,7 @@ const PrintInvoice = () => {
         }
 @page {
   margin: 15%;
+  size: landscape;
 }
 section {
   page-break-after: always;
@@ -241,8 +243,9 @@ section {
 section {
   margin-bottom: 20px; 
 }
-
-      </style>
+@page {
+  size: landscape;
+}      </style>
     </head>
     <body>
       ${printContent.innerHTML}
@@ -429,6 +432,7 @@ section {
   
   @page {
     margin: 1px; 
+    size:landscape;
   }
   
   .print-content table tbody tr,
@@ -502,7 +506,16 @@ section {
     }
   };
 
-  const calculateSubtotal = () => {
+  const calculateSubtotalByCategory = (category) => {
+    const categoryInvoices = filterInvoicesByCategory(category);
+    const subtotal = categoryInvoices.reduce(
+      (total, invoice) => total + parseFloat(invoice.data.total),
+      0
+    );
+    return subtotal.toFixed(2);
+  };
+
+  const calculateGrandTotal = () => {
     if (!Array.isArray(invoices)) {
       return 0;
     }
@@ -511,7 +524,9 @@ section {
         (total, invoice) => total + parseFloat(invoice.data.total),
         0
       );
-      return subtotal.toFixed(2);
+      const discountAmount = (subtotal * discountPercentage) / 100; // Calculate discount amount
+      const grandTotal = subtotal - discountAmount; // Subtract discount amount from subtotal
+      return grandTotal.toFixed(2);
     } else {
       return 0;
     }
@@ -616,20 +631,23 @@ section {
               </div>
 
               <div className="max-w-screen mx-auto p-6 space-y-6 text-neutral-700 dark:text-neutral-100">
-                <h1 className="text-3xl font-normal">Order Invoice</h1>
+                <h1 className="text-3xl font-normal uppercase">
+                  Order Invoice
+                </h1>
 
                 <div className="overflow-y-auto overflow-x-auto rounded-xl">
+                  {/* Subtotal by category */}
                   {uniqueCategories.map((category, index) => (
                     <div
                       key={index}
                       className="overflow-y-auto overflow-x-auto rounded-xl table-category"
                     >
-                      <h2 className="text-2xl font-medium mt-6 mb-4">
+                      <h2 className="text-2xl font-medium mt-6 mb-4 text-teal-800 dark:text-teal-200">
                         {category} Invoices
                       </h2>
-                      <table className="w-full rounded-lg text-sm text-left text-slate-500 dark:text-slate-200 bg-gray-900 dark:bg-gray-800">
+                      <table className="w-full rounded-lg text-sm text-left text-slate-500 dark:text-slate-400 bg-gray-900 dark:bg-gray-800">
                         {/* Table header */}
-                        <thead className="rounded-lg text-sm text-blue-900 uppercase bg-blue-100 dark:bg-slate-900 dark:text-slate-200">
+                        <thead className="rounded-lg text-sm text-blue-900 uppercase bg-blue-100 dark:bg-slate-900 dark:text-slate-300">
                           <tr>
                             <th scope="col" className="px-3 py-4">
                               S.No.
@@ -650,7 +668,10 @@ section {
                               GST %
                             </th>
                             <th scope="col" className="px-4 py-4">
-                              GST Amount
+                              GST Amt
+                            </th>
+                            <th scope="col" className="px-4 py-4">
+                              Discount
                             </th>
                             <th scope="col" className="px-4 py-4">
                               Total
@@ -662,9 +683,11 @@ section {
                             (invoice, index) => (
                               <tr
                                 key={invoice.id}
-                                className="bg-white border-b border-zinc-200 dark:bg-slate-800 dark:border-slate-700 text-slate-900 dark:text-slate-200"
+                                className="bg-white border-b border-zinc-200 dark:bg-slate-800 dark:border-slate-700"
                               >
-                                <td className="py-2 px-3">{index + 1}</td>
+                                <td className="py-2 px-3 text-slate-900">
+                                  {index + 1}
+                                </td>
                                 <td className="py-2 px-3">
                                   {invoice.data.area}
                                 </td>
@@ -683,6 +706,15 @@ section {
                                 <td className="py-2 px-4">
                                   {invoice.data.gstAmount}
                                 </td>
+                                <td className="py-2 px-2">
+                                  <span className="text-xs">
+                                    ({invoice.data.discountPercentage}%)
+                                  </span>
+                                  <span className="text-sm ml-1">
+                                    {invoice.data.discountAmount}
+                                  </span>
+                                </td>
+
                                 <td className="py-2 px-4">
                                   {invoice.data.total}
                                 </td>
@@ -691,15 +723,21 @@ section {
                           )}
                         </tbody>
                       </table>
+                      {/* Subtotal calculation with Category <div className="flex justify-end"><p className="font-normal text-xl">Subtotal ({category}) : {calculateSubtotalByCategory(category)} <br /></p></div></div>*/}
+                      <div className="flex justify-end">
+                        <p className="font-normal text-lg">
+                          Subtotal - {calculateSubtotalByCategory(category)}{" "}
+                          <br />
+                        </p>
+                      </div>
                     </div>
                   ))}
-                </div>
-
-                {/* Subtotal */}
-                <div className="flex justify-end">
-                  <p className="font-normal text-xl">
-                    Subtotal : {calculateSubtotal()} <br />
-                  </p>
+                  {/* GrandTotal calculation */}
+                  <div className="flex justify-end">
+                    <p className="font-normal text-xl bg-slate-100 p-2 rounded-xl text-neutral-900">
+                      Grand Total : {calculateGrandTotal()} <br />
+                    </p>
+                  </div>
                 </div>
 
                 {/* Edit Invoice Modal */}

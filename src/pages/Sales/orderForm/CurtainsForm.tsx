@@ -31,7 +31,9 @@ const CurtainsForm: React.FC<CurtainsFormProps> = ({
         image: null,
         tieOption: "No Tie",
         remarks: "",
+
         motorType: "none",
+
         tenMtr: "",
         twenMtr: "",
     });
@@ -505,13 +507,17 @@ const CurtainsForm: React.FC<CurtainsFormProps> = ({
                             </label>
                             <h1 className="">
                                 Panel per Mtr(+10) :{" "}
+
                                 <span className="text-red-900 font-bold">
+
                                     {formData.tenMtr}
                                 </span>
                             </h1>
                             <h1 className="">
                                 Panel per Mtr(+20) :{" "}
+
                                 <span className="text-red-900 font-bold">
+
                                     {formData.twenMtr}
                                 </span>
                             </h1>
@@ -561,6 +567,27 @@ const CurtainsForm: React.FC<CurtainsFormProps> = ({
                                 className="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-slate-600 dark:border-slate-500 dark:placeholder-slate-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                 {" "}
                                 <option value="None">None</option>
+                                <option value="Battery motor">
+                                    Battery motor
+                                </option>
+                                <option value="Wired motor">Wired motor</option>
+                                <option value="Tubular motor">
+                                    Tubular motor
+                                </option>
+                            </select>
+                        </div>
+                        <div className="col-span-2 md:col-span-1">
+                            <label
+                                htmlFor="hookType"
+                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                Motor Type
+                            </label>
+                            <select
+                                id="motorType"
+                                name="motorType"
+                                value={formData.motorType}
+                                onChange={(e) => handleInputChange(e)}
+                                className="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-slate-600 dark:border-slate-500 dark:placeholder-slate-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                 <option value="Battery motor">
                                     Battery motor
                                 </option>

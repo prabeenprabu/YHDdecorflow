@@ -13,6 +13,7 @@ const EditInvoiceModal = ({ invoice, saveEditedInvoice, closeModal }) => {
             },
         }));
 
+
         calculateAmountAndGst({
             ...editedData,
             data: { ...editedData.data, [name]: value },
@@ -44,6 +45,7 @@ const EditInvoiceModal = ({ invoice, saveEditedInvoice, closeModal }) => {
         const calculatedGstAmount =
             (calculatedAmount * parsedGstPercentage) / 100;
         const calculatedTotal = calculatedAmount + calculatedGstAmount;
+
 
         setEditedData((prevData) => ({
             ...prevData,
@@ -200,6 +202,38 @@ const EditInvoiceModal = ({ invoice, saveEditedInvoice, closeModal }) => {
                         </div>
                     </form>
                 </div>
+                <div className="col-span-6 sm:col-span-3">
+                  <label
+                    htmlFor="discountPercentage"
+                    className="block text-sm font-medium text-slate-700"
+                  >
+                    Discount%
+                  </label>
+                  <input
+                    type="number"
+                    name="discountPercentage"
+                    id="discountPercentage"
+                    value={editedData.data.discountPercentage}
+                    onChange={handleInputChange}
+                    className="mt-1 p-2 w-full border rounded-md"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="bg-gray-50 px-3 py-3 sm:px-6 mx-4 sm:flex sm:flex-row-reverse">
+              <button
+                type="submit"
+                className="w-full lg:mx-2 inline-flex my-2 justify-center rounded-md border border-transparent px-4 py-2 bg-red-700 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-800 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+              >
+                Save
+              </button>
+              <button
+                type="button"
+                onClick={closeModal}
+                className="w-full lg:mx-2 inline-flex my-2 justify-center rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-slate-700 shadow-sm hover:text-slate-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+              >
+                Cancel
+              </button>
             </div>
         </div>
     );

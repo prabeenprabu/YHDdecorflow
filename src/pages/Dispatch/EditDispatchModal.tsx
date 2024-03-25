@@ -23,6 +23,7 @@ const EditDispatchModal = ({ formData, saveEditedData, closeModal }) => {
         saveEditedData(editedData);
     };
 
+
     return (
         <div className="fixed top-0 left-0 z-50 w-full h-full flex justify-center items-center bg-black bg-opacity-75">
             <div className="bg-white rounded-lg p-6">

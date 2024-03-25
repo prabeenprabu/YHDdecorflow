@@ -207,6 +207,9 @@ const ViewInvoice = () => {
                         GST Amt
                       </th>
                       <th scope="col" className="px-4 py-4">
+                        Discount
+                      </th>
+                      <th scope="col" className="px-4 py-4">
                         Total
                       </th>
                       <th scope="col" className="px-4 py-4">
@@ -233,6 +236,10 @@ const ViewInvoice = () => {
                           </td>
                           <td className="py-2 px-4">
                             {invoice.data.gstAmount}
+                          </td>
+                          <td className="py-2 px-2">
+                            ({invoice.data.discountPercentage}%)
+                            {invoice.data.discountAmount}
                           </td>
                           <td className="py-2 px-4">{invoice.data.total}</td>
                           <td className="py-2 px-4">

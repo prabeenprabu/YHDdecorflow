@@ -135,6 +135,7 @@ const DispatchForm = () => {
                     selectedCustomerObject.clientName
                 );
 
+
                 const response = await axios.post(
                     `/api/dispatch/${selectedCustomer}`,
                     formDataToSend,
@@ -405,6 +406,7 @@ const DispatchForm = () => {
                     </div>
                 </div>
             )}
+
         </div>
     );
 };
