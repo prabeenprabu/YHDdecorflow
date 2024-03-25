@@ -24,7 +24,7 @@ import NewInvoice from "./pages/Invoice/NewInvoice";
 import ViewInvoice from "./pages/Invoice/ViewInvoice";
 import PrintInvoice from "./pages/Invoice/PrintInvoice";
 
-axios.defaults.baseURL = "https://time-glamorous-feast.glitch.me/";
+axios.defaults.baseURL = "https://cors-abineshcodes-projects.vercel.app";
 
 function App() {
     const [loading, setLoading] = useState<boolean>(true);
